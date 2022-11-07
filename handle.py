@@ -5,6 +5,7 @@ import hashlib
 import receive
 import replay
 import os
+from func import get_replay_content
 
 botIp = "127.0.0.1"  # 本机IP
 botPort = "5002"
@@ -53,17 +54,13 @@ class Handle(object):
                 # 获取到并解析出来用户发送过来的数据信息
                 recContent = recMsg.Content.decode("utf-8")
                 print("user message:", recContent, type(recContent))
-                # 获取到MsgID 作为信息唯一标识送入RASA中
-                msgID = recMsg.MsgId
-                print("user message ID :", msgID, type(recContent))
                 replayContent = "QQ群：342950180"
                 print("bot recContent: ", replayContent)
                 # 接受信息与发送信息的主体对象转换一下
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
-                # 定义好需要返回给用户的数据文本内容
+                get_replay_content(recContent, toUser)
                 replyMsg = replay.TextMsg(toUser, fromUser, replayContent)
-                replyMsg.send()
                 return replyMsg.send()
             else:
                 print("暂且不处理")
