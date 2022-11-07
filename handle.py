@@ -59,7 +59,7 @@ class Handle(object):
                 # 接受信息与发送信息的主体对象转换一下
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
-                get_replay_content(recContent, toUser)
+                replayContent = get_replay_content(recContent, toUser)
                 replyMsg = replay.TextMsg(toUser, fromUser, replayContent)
                 return replyMsg.send()
             else:
