@@ -56,7 +56,6 @@ class Handle(object):
                 print("user message:", recContent, type(recContent))
                 replayContent = "QQ群：342950180"
                 print("bot recContent: ", replayContent)
-                # 接受信息与发送信息的主体对象转换一下
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
                 replayContent = get_replay_content(recContent, toUser)
